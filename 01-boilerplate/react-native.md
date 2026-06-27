@@ -5,7 +5,7 @@
 | Layer | Choice |
 |---|---|
 | Framework | React Native (latest stable) |
-| Navigation | React Navigation v6 |
+| Navigation | React Navigation v7 |
 | Auth | Clerk RN SDK (`@clerk/clerk-expo` or `@clerk/react-native`) |
 | API client | Typed fetch wrapper pointing to boilerplate API |
 | iOS widgets | Swift — `ios/ProjectNameWidgets/` extension folder |

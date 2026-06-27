@@ -4,9 +4,9 @@ The Project Northstar boilerplate is a monorepo starter that every new app forks
 
 ## What's Included Out of the Box
 
-- **Backend API** — Express server with Clerk JWT verification, Prisma + PostgreSQL, Upstash Redis session/cache, rate limiting, Helmet security headers, CORS
-- **React Native app** — Expo or bare RN (TBD), React Navigation v6 shell, Clerk RN SDK, iOS Swift widget folder, Android Kotlin widget folder, typed API client
-- **React web app** — Vite + React 18, Clerk React SDK, typed API client, basic routing shell
+- **Backend API** — Express 5 server with Clerk JWT verification, Prisma 7 + PostgreSQL, Upstash Redis session/cache, rate limiting, Helmet security headers, CORS
+- **React Native app** — Expo or bare RN (TBD), React Navigation v7 shell, Clerk RN SDK, iOS Swift widget folder, Android Kotlin widget folder, typed API client
+- **React web app** — Vite 8 + React 19, Clerk React SDK, React Router v7, typed API client, basic routing shell
 
 ## Repo Structure
 

@@ -4,10 +4,10 @@
 
 | Layer | Choice |
 |---|---|
-| Bundler | Vite |
-| UI framework | React 18 |
+| Bundler | Vite 8 |
+| UI framework | React 19 |
 | Auth | Clerk React SDK (`@clerk/clerk-react`) |
-| Routing | React Router v6 |
+| Routing | React Router v7 (`react-router` package) |
 | API client | Typed fetch wrapper pointing to boilerplate API |
 | Language | TypeScript |
 

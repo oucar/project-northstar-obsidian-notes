@@ -4,11 +4,11 @@
 
 | Layer | Choice |
 |---|---|
-| Runtime | Node.js (LTS) |
-| Framework | Express |
+| Runtime | Node.js 24 LTS |
+| Framework | Express 5.2 |
 | Auth | Clerk — JWT verification via `@clerk/express` |
 | Database | PostgreSQL |
-| ORM | Prisma |
+| ORM | Prisma 7 |
 | Cache / sessions | Upstash Redis (`@upstash/redis`) |
 | Rate limiting | `express-rate-limit` |
 | Security headers | `helmet` |

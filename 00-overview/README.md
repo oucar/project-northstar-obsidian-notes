@@ -18,9 +18,9 @@ This Obsidian vault is the source of truth for all project documentation across 
 
 ## Stack (Shared Across All Apps)
 
-- **Backend** — Node.js, Express, PostgreSQL, Prisma ORM, Clerk (auth), Upstash Redis, express-rate-limit, Helmet, CORS
-- **Mobile** — React Native (latest stable), React Navigation v6, Clerk RN SDK, native iOS (Swift) and Android (Kotlin) widget scaffolds
-- **Web** — Vite + React 18, Clerk React SDK
+- **Backend** — Node.js 24 LTS, Express 5.2, PostgreSQL, Prisma 7 ORM, Clerk (auth), Upstash Redis, express-rate-limit, Helmet, CORS
+- **Mobile** — React Native (latest stable), React Navigation v7, Clerk RN SDK, native iOS (Swift) and Android (Kotlin) widget scaffolds
+- **Web** — Vite 8 + React 19, React Router v7, Clerk React SDK
 - **Docs** — This vault, pushed to GitHub
 - **Security** — Dependabot enabled on all repos
 - **Deployment** — TBD (Railway or AWS)
