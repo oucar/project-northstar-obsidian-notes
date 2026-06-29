@@ -6,41 +6,41 @@ Build order is top-down. Each milestone lists **Scope** and **Acceptance**. Tick
 
 ---
 
-## M1 — Scaffold & Tooling `[ ]`
+## M1 — Scaffold & Tooling `[x]`
 
 **Goal:** A Vite + React 19 + TS app that runs and builds, with linting and validated env.
 
 **Scope**
-- [ ] Vite 8 + React 19 + TypeScript scaffold
-- [ ] ESLint + Prettier; `lint` and `format` scripts
-- [ ] Folder structure: `src/{pages,components,api,lib,routes}`
-- [ ] `.env.example` (`VITE_CLERK_PUBLISHABLE_KEY`, `VITE_API_BASE_URL`); env validated at startup
-- [ ] `vite.config.ts` with `/api` → `localhost:3000` dev proxy
+- [x] Vite 8 + React 19 + TypeScript scaffold
+- [x] ESLint + Prettier; `lint` and `format` scripts
+- [x] Folder structure: `src/{pages,components,api,lib,routes}`
+- [x] `.env.example` (`VITE_CLERK_PUBLISHABLE_KEY`, `VITE_API_BASE_URL`); env validated at startup
+- [x] `vite.config.ts` with `/api` → `localhost:3000` dev proxy
 
 **Acceptance**
-- [ ] `npm run dev` serves on `http://localhost:5173` with no console errors
-- [ ] `npm run build` produces a `dist/` bundle; `npm run preview` serves it
-- [ ] `npm run lint` passes with zero errors
-- [ ] Missing `VITE_CLERK_PUBLISHABLE_KEY` surfaces a clear error, not a blank screen
+- [x] `npm run dev` serves on `http://localhost:5173` with no console errors
+- [x] `npm run build` produces a `dist/` bundle; `npm run preview` serves it
+- [x] `npm run lint` passes with zero errors
+- [x] Missing `VITE_CLERK_PUBLISHABLE_KEY` surfaces a clear error, not a blank screen
 
 ---
 
-## M2 — Routing & Layout `[ ]`
+## M2 — Routing & Layout `[x]`
 
 **Goal:** React Router v7 with a layout shell and route structure.
 
 **Scope**
-- [ ] React Router v7 (`react-router`) configured in `router.tsx`
-- [ ] Root layout (header/nav + `<Outlet/>`) shared across routes
-- [ ] Routes: `/` (public landing), `/dashboard` (placeholder), `*` (404)
-- [ ] Client-side nav (no full reloads)
-- [ ] Loading/pending UI for route transitions
+- [x] React Router v7 (`react-router`) configured in `router.tsx`
+- [x] Root layout (header/nav + `<Outlet/>`) shared across routes
+- [x] Routes: `/` (public landing), `/dashboard` (placeholder), `*` (404)
+- [x] Client-side nav (no full reloads)
+- [x] Loading/pending UI for route transitions
 
 **Acceptance**
-- [ ] Navigating between `/` and `/dashboard` updates the view without a full page reload
-- [ ] An unknown URL renders the 404 page
-- [ ] The layout shell (nav) persists across route changes
-- [ ] Direct-loading `/dashboard` by URL works (no blank screen)
+- [x] Navigating between `/` and `/dashboard` updates the view without a full page reload
+- [x] An unknown URL renders the 404 page
+- [x] The layout shell (nav) persists across route changes
+- [x] Direct-loading `/dashboard` by URL works (no blank screen)
 
 ---
 
@@ -49,13 +49,14 @@ Build order is top-down. Each milestone lists **Scope** and **Acceptance**. Tick
 **Goal:** Clerk-gated routing with sign in / sign up.
 
 **Scope**
-- [ ] `ClerkProvider` wrapping the app in `main.tsx` with publishable key from env
-- [ ] `pages/SignIn.tsx`, `pages/SignUp.tsx` (Clerk components)
-- [ ] `<SignedIn>` / `<SignedOut>` guard; `/dashboard` requires auth
-- [ ] Unauthenticated access to a protected route redirects to sign-in
-- [ ] User button / sign-out in the nav
+- [x] `ClerkProvider` wrapping the app in `main.tsx` with publishable key from env
+- [x] `pages/SignIn.tsx`, `pages/SignUp.tsx` (Clerk components)
+- [x] `<SignedIn>` / `<SignedOut>` guard; `/dashboard` requires auth
+- [x] Unauthenticated access to a protected route redirects to sign-in
+- [x] User button / sign-out in the nav
 
 **Acceptance**
+<!-- Implemented in code; needs a live signed-in browser run to verify -->
 - [ ] Visiting `/dashboard` while signed out redirects to sign-in
 - [ ] Completing sign-up/sign-in lands on `/dashboard`
 - [ ] Sign-out returns to public state and re-protects `/dashboard`
@@ -68,13 +69,14 @@ Build order is top-down. Each milestone lists **Scope** and **Acceptance**. Tick
 **Goal:** Typed API client that injects the Clerk token, used for a real authenticated call. **Depends on Backend API M3.**
 
 **Scope**
-- [ ] `api/client.ts` typed fetch wrapper injecting the Clerk session token per request
-- [ ] Base URL from `VITE_API_BASE_URL`; uses `/api` proxy in dev
-- [ ] `/dashboard` fetches `GET /me` from the backend and renders the user
-- [ ] Loading + error states for the request
-- [ ] `401` from the API triggers a re-auth / sign-in path
+- [x] `api/client.ts` typed fetch wrapper injecting the Clerk session token per request
+- [x] Base URL from `VITE_API_BASE_URL`; uses `/api` proxy in dev
+- [x] `/dashboard` fetches `GET /me` from the backend and renders the user
+- [x] Loading + error states for the request
+- [x] `401` from the API triggers a re-auth / sign-in path
 
 **Acceptance**
+<!-- Implemented in code; backend /me + /api proxy verified, but the authenticated round-trip needs a live signed-in run -->
 - [ ] `/dashboard` displays data fetched from the backend `/me` while authenticated
 - [ ] The request carries an `Authorization: Bearer <token>` header (verify in Network tab)
 - [ ] Loading state shows before data; error state shows if the API is down

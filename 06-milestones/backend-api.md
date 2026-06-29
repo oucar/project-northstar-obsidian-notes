@@ -69,22 +69,25 @@ Build order is top-down. Each milestone lists **Scope** (what to build) and **Ac
 
 ---
 
-## M4 — Redis Caching & Rate Limiting `[ ]`
+## M4 — Redis Caching & Rate Limiting `[~]`
 
 **Goal:** Upstash Redis client plus rate limiting and a reusable cache helper.
 
 **Scope**
-- [ ] `@upstash/redis` singleton in `src/lib/redis.ts`
-- [ ] Global rate limiter (e.g. 100 req / 15 min per IP) via `express-rate-limit`
-- [ ] Stricter limiter on auth-sensitive routes
-- [ ] `cache.get/set(key, ttl)` helper; one route demonstrates cache-hit/miss
-- [ ] Rate-limit store backed by Redis (so limits hold across instances)
+- [x] `@upstash/redis` singleton in `src/lib/redis.ts`
+- [x] Global rate limiter (100 req / 15 min per IP) via `express-rate-limit` (`src/middleware/rate-limit.ts`)
+- [x] Stricter limiter on auth-sensitive routes (`/me`: 20 req / 15 min)
+- [x] `cache.get/set(key, ttl)` helper (`src/lib/cache.ts`); `GET /stats` demonstrates cache-hit/miss
+- [x] Rate-limit store backed by Redis — custom `express-rate-limit` store over Upstash (atomic Lua `INCR`+`PEXPIRE`), shared across instances
 
 **Acceptance**
-- [ ] Exceeding the limit returns `429` with a `Retry-After` header
-- [ ] A cached endpoint returns a `X-Cache: HIT` (or logged equivalent) on the second call
-- [ ] Cached value is visible in Upstash and expires after its TTL
-- [ ] Redis being down degrades gracefully (logged), it doesn't crash the server
+- [ ] Exceeding the limit returns `429` with a `Retry-After` header _(needs real Upstash creds — fails open with placeholder creds)_
+- [ ] A cached endpoint returns a `X-Cache: HIT` (or logged equivalent) on the second call _(needs real Upstash creds)_
+- [ ] Cached value is visible in Upstash and expires after its TTL _(needs real Upstash creds)_
+- [x] Redis being down degrades gracefully (logged), it doesn't crash the server _(verified: placeholder creds → all routes serve, cache→miss, limiter→open, both logged)_
+
+> [!warning] Blocked on credentials
+> `apps/uapi/.env` has placeholder Upstash values (`https://placeholder.upstash.io`). Code is complete and builds/lints clean; the three live acceptance checks need a real Upstash Redis (free tier) URL + token.
 
 ---
 
