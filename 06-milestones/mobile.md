@@ -11,11 +11,11 @@ Build order is top-down. Each milestone lists **Scope** and **Acceptance**. Tick
 **Goal:** A React Native + TS app that runs on both iOS and Android.
 
 **Scope**
-- [ ] React Native project initialized with TypeScript
-- [ ] ESLint + Prettier; `lint` and `format` scripts
-- [ ] Folder structure: `src/{screens,navigation,api,components,lib}`
-- [ ] Env config (`.env` / `app.config.ts`) for Clerk key + API base URL
-- [ ] Metro + native builds working
+- [x] React Native project initialized with TypeScript
+- [x] ESLint + Prettier; `lint` and `format` scripts
+- [x] Folder structure: `src/{screens,navigation,api,components,lib}`
+- [x] Env config (`.env` / `app.config.ts`) for Clerk key + API base URL
+- [ ] Metro + native builds working — Metro bundle verified; native build (prebuild/EAS) not yet run
 
 **Acceptance**
 - [ ] `npm run ios` boots the app on an iOS simulator with no red screen
@@ -30,11 +30,11 @@ Build order is top-down. Each milestone lists **Scope** and **Acceptance**. Tick
 **Goal:** React Navigation v7 with auth and app stacks.
 
 **Scope**
-- [ ] React Navigation v7 + `NavigationContainer` in `App.tsx`
-- [ ] Root navigator switching between an **Auth** stack and an **App** stack
-- [ ] App stack with a bottom tab navigator (Home + one more tab)
-- [ ] Typed navigation params
-- [ ] Placeholder screens for each route
+- [x] React Navigation v7 + `NavigationContainer` in `App.tsx`
+- [x] Root navigator switching between an **Auth** stack and an **App** stack
+- [x] App stack with a bottom tab navigator (Home + one more tab)
+- [x] Typed navigation params
+- [x] Placeholder screens for each route
 
 **Acceptance**
 - [ ] App launches into the Auth stack by default
@@ -49,11 +49,11 @@ Build order is top-down. Each milestone lists **Scope** and **Acceptance**. Tick
 **Goal:** Clerk-gated navigation with sign in / sign up and persisted session.
 
 **Scope**
-- [ ] `ClerkProvider` wrapping `NavigationContainer` with a secure token cache
-- [ ] `screens/SignIn.tsx`, `screens/SignUp.tsx` (Clerk RN flows, incl. email verification)
-- [ ] Root navigator gated by Clerk `useAuth` (`isSignedIn`)
-- [ ] Sign-out action in the App stack
-- [ ] Token cache backed by secure storage (Keychain / Keystore)
+- [x] `ClerkProvider` wrapping `NavigationContainer` with a secure token cache
+- [x] `screens/SignIn.tsx`, `screens/SignUp.tsx` (Clerk RN flows, incl. email verification)
+- [x] Root navigator gated by Clerk `useAuth` (`isSignedIn`)
+- [x] Sign-out action in the App stack
+- [x] Token cache backed by secure storage (Keychain / Keystore)
 
 **Acceptance**
 - [ ] Signed-out users see only the Auth stack

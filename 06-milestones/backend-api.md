@@ -6,63 +6,66 @@ Build order is top-down. Each milestone lists **Scope** (what to build) and **Ac
 
 ---
 
-## M1 — Scaffold & Tooling `[ ]`
+## M1 — Scaffold & Tooling `[x]`
 
 **Goal:** A TypeScript Express app that boots, with linting, formatting, and validated env.
 
 **Scope**
-- [ ] `npm init`, TypeScript, `tsconfig.json` (strict mode on)
-- [ ] Express 5.2 app in `src/app.ts` + `src/server.ts` entrypoint
-- [ ] Scripts: `dev` (watch), `build` (tsc), `start` (run built)
-- [ ] ESLint + Prettier configured, `lint` and `format` scripts
-- [ ] Folder structure: `src/{routes,middleware,lib,config}`
-- [ ] `.env.example` with all vars; env loaded + validated at startup (zod) — process exits on missing/invalid var
-- [ ] `GET /health` route returning `{ status: "ok" }`
+- [x] `npm init`, TypeScript, `tsconfig.json` (strict mode on)
+- [x] Express 5.2 app in `src/app.ts` + `src/server.ts` entrypoint _(entrypoint is `src/index.ts`)_
+- [x] Scripts: `dev` (watch), `build` (tsc), `start` (run built)
+- [x] ESLint + Prettier configured, `lint` and `format` scripts
+- [x] Folder structure: `src/{routes,middleware,lib,config}`
+- [x] `.env.example` with all vars; env loaded + validated at startup (zod) — process exits on missing/invalid var
+- [x] `GET /health` route returning `{ status: "ok" }`
 
 **Acceptance**
-- [ ] `npm run dev` starts the server on `PORT` with no errors
-- [ ] `curl localhost:3000/health` → `200` with `{"status":"ok"}`
-- [ ] `npm run build` produces `dist/` and `npm start` runs it
-- [ ] `npm run lint` passes with zero errors
-- [ ] Removing a required var from `.env` makes startup fail with a clear message
+- [x] `npm run dev` starts the server on `PORT` with no errors
+- [x] `curl localhost:3000/health` → `200` with `{"status":"ok"}`
+- [x] `npm run build` produces `dist/` and `npm start` runs it
+- [x] `npm run lint` passes with zero errors
+- [x] Removing a required var from `.env` makes startup fail with a clear message
 
 ---
 
-## M2 — Database & Prisma `[ ]`
+## M2 — Database & Prisma `[x]`
 
 **Goal:** Postgres wired through Prisma 7 with a migrated `User` model.
 
 **Scope**
-- [ ] Prisma 7 installed; `prisma/schema.prisma` with `User` model (id, `clerkUserId @unique`, email, timestamps)
-- [ ] Prisma client singleton in `src/lib/prisma.ts` (no hot-reload connection leaks)
-- [ ] First migration committed under `prisma/migrations/`
-- [ ] DB connectivity checked at startup (fail fast if unreachable)
-- [ ] `db:migrate`, `db:studio`, `db:generate` scripts
+- [x] Prisma 7 installed; `prisma/schema.prisma` with `User` model (id, `clerkUserId @unique`, email, timestamps)
+- [x] Prisma client singleton in `src/lib/prisma.ts` (no hot-reload connection leaks)
+- [x] First migration committed under `prisma/migrations/`
+- [x] DB connectivity checked at startup (fail fast if unreachable)
+- [x] `db:migrate`, `db:studio`, `db:generate` scripts
 
 **Acceptance**
-- [ ] `npx prisma migrate dev` applies cleanly against a local Postgres
-- [ ] `npx prisma studio` shows the `User` table
-- [ ] Server logs a successful DB connection on boot; with a bad `DATABASE_URL` it fails fast with a clear error
-- [ ] A throwaway script can create + read a `User` row
+- [x] `npx prisma migrate dev` applies cleanly against a local Postgres
+- [x] `npx prisma studio` shows the `User` table
+- [x] Server logs a successful DB connection on boot; with a bad `DATABASE_URL` it fails fast with a clear error
+- [x] A throwaway script can create + read a `User` row _(verified via the `/me` upsert: one `User` row exists)_
 
 ---
 
-## M3 — Auth (Clerk) `[ ]`
+## M3 — Auth (Clerk) `[~]`
 
 **Goal:** Clerk JWT verification protecting routes, with user sync to Postgres.
 
 **Scope**
-- [ ] `@clerk/express` wired; `clerkMiddleware()` mounted
-- [ ] `requireAuth` middleware that rejects unauthenticated requests with `401`
-- [ ] `GET /me` protected route returning the current user
-- [ ] On first authenticated request, upsert a `User` row keyed by `clerkUserId`
-- [ ] `req.auth` typed via module augmentation
+- [x] `@clerk/express` wired; `clerkMiddleware()` mounted
+- [x] `requireAuth` middleware that rejects unauthenticated requests with `401`
+- [x] `GET /me` protected route returning the current user
+- [x] On first authenticated request, upsert a `User` row keyed by `clerkUserId`
+- [ ] `req.auth` typed via module augmentation _(uses `getAuth(req)` instead — no augmentation yet)_
 
 **Acceptance**
-- [ ] `GET /me` with no token → `401`
-- [ ] `GET /me` with a valid Clerk token → `200` and the user payload
-- [ ] First authed call creates exactly one `User` row; repeat calls don't duplicate it
-- [ ] Health check remains public (no token required)
+- [x] `GET /me` with no token → `401`
+- [x] `GET /me` with a valid Clerk token → `200` and the user payload
+- [x] First authed call creates exactly one `User` row; repeat calls don't duplicate it
+- [x] Health check remains public (no token required)
+
+> [!note] Hardening follow-up
+> `/me` throws an unhandled `ClerkAPIResponseError` (→ 500) when a token's user no longer exists in the Clerk instance (e.g. a stale session). Catch the 404 and return `401` instead. Tracked under M5 (centralized error handling).
 
 ---
 
